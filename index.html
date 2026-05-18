@@ -100,29 +100,41 @@
 
 <header>
     <h1>Politika privatnosti — eZgrada</h1>
-    <p class="updated">Datum poslednje izmene: 16.05.2026.</p>
+    <p class="updated">Verzija 2.0 · Datum poslednje izmene: 18.05.2026.</p>
 </header>
 
 <h2>1. Ko smo</h2>
-<p>Aplikacija <strong>eZgrada</strong> (u daljem tekstu: "Aplikacija") je softver za upravljanje stambenom zajednicom koji omogućava stanarima i upravnicima zgrade da komuniciraju, prijavljuju kvarove, glasaju o pitanjima koja se tiču zgrade i pristupaju važnim kontaktima.</p>
+<p>Aplikacija <strong>eZgrada</strong> (u daljem tekstu: "Aplikacija") je softver za upravljanje stambenom zajednicom koji omogućava stanarima, članovima saveta i upravnicima da komuniciraju, prijavljuju kvarove, glasaju, prate finansije zajednice i pristupaju važnim kontaktima i dokumentima.</p>
 
-<p><strong>Pružalac usluge (Rukovalac podataka):</strong><br>
+<p><strong>Pružalac usluge (Rukovalac platforme):</strong><br>
 Nikola Pavlović<br>
 Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
+
+<div class="callout">
+<strong>Podela odgovornosti:</strong> Operater Aplikacije je rukovalac za podatke vezane za funkcionisanje platforme. <strong>Svaka stambena zajednica je samostalan rukovalac</strong> za podatke svojih stanara — eZgrada je u tom smislu obrađivač koji pruža tehničku infrastrukturu.
+</div>
 
 <h2>2. Koje podatke prikupljamo</h2>
 
 <h3>2.1. Podaci o korisniku</h3>
-<p>Kada se registruješ za eZgrada nalog, prikupljamo:</p>
+<p>Pri registraciji:</p>
 <ul>
     <li>Ime i prezime</li>
-    <li>Email adresu</li>
-    <li>Lozinku (čuvana isključivo u kriptografski hashovanom obliku, nikad u izvornom obliku)</li>
+    <li>Email adresa</li>
+    <li>Lozinka (čuvana isključivo u kriptografski hashovanom obliku, nikad u izvornom obliku)</li>
     <li>Telefon (opciono)</li>
-    <li>Stan u zgradi i ulogu (vlasnik, stanar, član saveta, upravnik)</li>
+    <li>Uloga u zajednici (stanar, član saveta, upravnik, super-administrator)</li>
+    <li>Status verifikacije (na čekanju, odobren, odbijen)</li>
 </ul>
 
-<h3>2.2. Sadržaj koji generišeš</h3>
+<h3>2.2. Podaci o vlasništvu i stanu</h3>
+<ul>
+    <li>Broj stana, sprat, kvadratura</li>
+    <li>Mesečna naknada za održavanje (ako je postavljena)</li>
+    <li>Tip stanara (vlasnik, zakupac)</li>
+</ul>
+
+<h3>2.3. Sadržaj koji generišeš</h3>
 <ul>
     <li>Prijave kvarova (opis, lokacija, prioritet, kategorija)</li>
     <li>Fotografije priložene uz prijave (opciono)</li>
@@ -131,52 +143,83 @@ Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
     <li>Kontakti majstora koje predlažeš</li>
 </ul>
 
-<h3>2.3. Tehnički podaci</h3>
+<h3>2.4. Finansijski podaci (novo, V1.1)</h3>
+<ul>
+    <li><strong>Tvoje uplate</strong> prema zajednici (iznos, datum, poziv na broj, opis)</li>
+    <li><strong>Tvoja zaduženja</strong> (mesečna naknada, posebni doprinosi)</li>
+    <li><strong>Saldo i istorija plaćanja</strong> vezana za tvoj stan</li>
+    <li><strong>Bankovni izvodi (CSV)</strong> — upravnik uvozi CSV izvod od banke; iz njega se preuzimaju samo uplate koje pripadaju tvojoj zajednici. <strong>Originalne CSV datoteke se NE čuvaju na serveru</strong>; samo se parsiraju i kreiraju pojedinačne transakcije</li>
+</ul>
+
+<div class="callout">
+<strong>Ko vidi tvoje finansije:</strong> Upravnik i član saveta vide sve transakcije zajednice (član saveta samo gleda, ne menja). Drugi stanari <strong>NE vide</strong> tvoje pojedinačne uplate — vide samo ukupni saldo zajednice i svoje lične transakcije.
+</div>
+
+<h3>2.5. Dokumenti zajednice</h3>
+<ul>
+    <li>PDF dokumenti koje upravnik uploaduje (ugovori, zapisnici sa skupština, finansijski izveštaji, pravilnici)</li>
+    <li>Vidljivi svim stanarima iste zajednice</li>
+</ul>
+
+<h3>2.6. Komšije i kontakti</h3>
+<ul>
+    <li>U sekciji "Komšije" stanari iste zajednice vide ime, prezime i ulogu drugih stanara</li>
+    <li><strong>Telefon se NE deli</strong> ako si običan stanar</li>
+    <li><strong>Telefon se DELI sa stanarima zajednice</strong> samo ako si član saveta ili upravnik (javna funkcija)</li>
+</ul>
+
+<h3>2.7. Tehnički podaci</h3>
 <ul>
     <li>IP adresa pri prijavi (radi bezbednosne provere)</li>
     <li>Tip uređaja i verzija operativnog sistema</li>
     <li>Vreme prijave i odjave</li>
+    <li>Token za push notifikacije (vezan za tvoj uređaj, opciono)</li>
 </ul>
 
-<h3>2.4. Šta NE prikupljamo</h3>
+<h3>2.8. Šta NE prikupljamo</h3>
 <ul>
-    <li>Tvoju tačnu geografsku lokaciju</li>
+    <li>Tvoju tačnu geografsku lokaciju (GPS)</li>
     <li>Kontakte sa tvog telefona</li>
     <li>Aktivnost u drugim aplikacijama</li>
-    <li>Podatke o plaćanju (Aplikacija ne procesuira plaćanja)</li>
+    <li>Identifikator reklama (IDFA)</li>
+    <li>Podatke o plaćanju karticom (Aplikacija ne procesuira kartična plaćanja)</li>
 </ul>
 
-<h2>3. Zašto prikupljamo podatke (svrha obrade)</h2>
-<p>Tvoje podatke koristimo isključivo radi:</p>
-<ol>
-    <li><strong>Pružanja osnovne funkcionalnosti</strong> Aplikacije — komunikacija, prijave kvarova, glasanja, kontakti</li>
-    <li><strong>Autentifikacije</strong> — provera da si ti vlasnik naloga</li>
-    <li><strong>Verifikacije</strong> od strane upravnika tvoje zgrade</li>
-    <li><strong>Bezbednosti</strong> — sprečavanje neovlašćenog pristupa i zloupotrebe</li>
-</ol>
+<h2>3. Zašto prikupljamo podatke (pravni osnov)</h2>
+<table>
+<tr><th>Kategorija</th><th>Pravni osnov</th></tr>
+<tr><td>Email, lozinka, ime, prezime</td><td>Izvršenje ugovora (registracija)</td></tr>
+<tr><td>Članstvo u zajednici, uloga</td><td>Izvršenje ugovora (pristup zajednici)</td></tr>
+<tr><td>Vlasništvo nad stanom</td><td>Izvršenje ugovora + legitimni interes zajednice</td></tr>
+<tr><td>Finansijski podaci (uplate, zaduženja)</td><td>Zakonska obaveza (Zakon o računovodstvu) + izvršenje ugovora</td></tr>
+<tr><td>Bankovni izvodi</td><td>Legitimni interes zajednice (vođenje poslovnih knjiga)</td></tr>
+<tr><td>Glasovi</td><td>Izvršenje ugovora (statutarna obaveza zajednice)</td></tr>
+<tr><td>Telefon u Komšije (samo odbornici)</td><td>Legitimni interes (odbornik je izabrana javna funkcija)</td></tr>
+<tr><td>Push token</td><td>Pristanak (možeš odbiti notifikacije)</td></tr>
+</table>
 
-<div class="callout">
-<strong>Pravni osnov obrade:</strong> Saglasnost koju daješ prilikom registracije, kao i izvršenje ugovora (Zakon o zaštiti podataka o ličnosti Republike Srbije, Opšta uredba EU o zaštiti podataka — GDPR čl. 6(1)(b)).
-</div>
+<p>Pravna osnova: <strong>Zakon o zaštiti podataka o ličnosti Republike Srbije</strong> ("Sl. glasnik RS", br. 87/2018) i <strong>Opšta uredba EU o zaštiti podataka (GDPR)</strong> čl. 6.</p>
 
 <h2>4. Sa kim delimo podatke</h2>
 
 <h3>4.1. U okviru tvoje zajednice</h3>
 <ul>
-    <li>Tvoje <strong>ime, prezime i kontakt podaci</strong> vidljivi su drugim odobrenim članovima tvoje stambene zajednice</li>
+    <li>Tvoje <strong>ime, prezime i broj stana</strong> vidljivi su drugim odobrenim članovima tvoje zajednice</li>
+    <li>Tvoj <strong>telefon</strong> deli se sa drugim stanarima samo ako si član saveta ili upravnik</li>
     <li>Tvoje <strong>prijave i komentari</strong> vidljivi su svim članovima tvoje zajednice</li>
-    <li>Tvoji <strong>glasovi su anonimizovani</strong> — drugi članovi vide ukupan broj glasova po opciji, ne ko je glasao za šta</li>
+    <li>Tvoji <strong>glasovi su anonimizovani</strong> — drugi članovi vide ukupan broj glasova po opciji, ne ko je glasao za šta. Upravnik vidi pojedinačne glasove samo radi prebrojavanja</li>
+    <li>Tvoje <strong>pojedinačne finansijske transakcije</strong> vide samo upravnik i član saveta — ne drugi stanari</li>
 </ul>
 
 <h3>4.2. Sa drugim zajednicama</h3>
 <p><strong>Tvoji podaci NIKADA se ne dele sa drugim stambenim zajednicama.</strong> Aplikacija koristi tehnologiju izolacije podataka na nivou baze (Row Level Security) koja garantuje da podaci jedne zajednice ne mogu fizički da budu pristupljeni od strane korisnika druge zajednice.</p>
 
 <h3>4.3. Sa trećim stranama</h3>
-<p>Podatke ne prodajemo, ne iznajmljujemo, niti prosleđujemo trećim stranama u marketinške svrhe. Podatke prosleđujemo samo:</p>
+<p>Podatke <strong>ne prodajemo</strong>, ne iznajmljujemo, niti prosleđujemo trećim stranama u marketinške svrhe. Ne koristimo eksterne analitičke alate (Google Analytics, Facebook Pixel, sl.). Podatke prosleđujemo samo:</p>
 <ul>
-    <li><strong>Supabase Inc.</strong> (naš hosting servis) — podaci se čuvaju u Frankfurtu (EU)</li>
-    <li><strong>Apple Inc.</strong> — minimalni podaci potrebni za rad aplikacije na iOS uređaju</li>
-    <li><strong>Nadležnim državnim organima</strong> — samo na osnovu zakonske obaveze (sudski nalog)</li>
+    <li><strong>Supabase Inc.</strong> (naš hosting servis i obrađivač) — podaci se čuvaju u Frankfurtu (EU). Supabase je certifikovan za GDPR.</li>
+    <li><strong>Apple Inc.</strong> — token za push notifikacije (kad uključimo notifikacije) prolazi kroz Apple Push Notification Service</li>
+    <li><strong>Nadležnim državnim organima</strong> — samo na osnovu zakonske obaveze (sudski nalog ili zahtev nadležnog organa)</li>
 </ul>
 
 <h2>5. Gde i kako čuvamo podatke</h2>
@@ -185,26 +228,33 @@ Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
     <li>Transport: <strong>TLS 1.3 enkripcija</strong></li>
     <li>Lozinke: <strong>bcrypt hash</strong> (nije moguće ih dešifrovati)</li>
     <li>Pristup bazi: <strong>Row Level Security politike</strong> + JWT autentifikacija</li>
-    <li>Slike: izolovan storage bucket po zajednici, signed URLs sa expiry</li>
+    <li>PDF dokumenti i fajlovi: izolovan storage bucket po zajednici, autentifikovan pristup</li>
+    <li>Backup: Supabase point-in-time recovery (7 dana)</li>
 </ul>
 
 <h2>6. Koliko dugo čuvamo podatke</h2>
 <table>
 <tr><th>Tip podatka</th><th>Period čuvanja</th></tr>
-<tr><td>Aktivni nalog i sadržaj</td><td>Dok ne obrišeš nalog</td></tr>
-<tr><td>Email adresa za prijavu</td><td>Dok ne obrišeš nalog</td></tr>
+<tr><td>Aktivni nalog i osnovni podaci</td><td>Dok je nalog aktivan</td></tr>
+<tr><td>Obrisani nalog (lični podaci)</td><td>Trajno obrisano u trenutku zahteva</td></tr>
+<tr><td><strong>Finansijski zapisi</strong> (uplate, zaduženja, troškovi)</td><td><strong>10 godina</strong> (Zakon o računovodstvu RS) — anonimizuju se nakon brisanja naloga, ne brišu</td></tr>
+<tr><td>Glasovi i odluke skupštine</td><td>Dok je zajednica aktivna (statutarni dokument)</td></tr>
 <tr><td>Logovi prijave (audit)</td><td>90 dana od događaja</td></tr>
-<tr><td>Obrisani nalog</td><td>Trajno obrisano u trenutku zahteva</td></tr>
+<tr><td>Push token</td><td>Dok ne deinstaliraš app ili isključiš notifikacije</td></tr>
 </table>
+
+<div class="callout">
+<strong>Važno:</strong> Brisanjem tvog naloga briše se sve što je lično (ime, email, telefon, profil), ali se <strong>finansijske transakcije anonimizuju</strong> (skida se veza sa tvojim ID-em) umesto da se brišu, jer Zakon o računovodstvu RS zahteva čuvanje poslovnih knjiga 10 godina. Posle tog perioda, i te zapise brišemo.
+</div>
 
 <h2>7. Tvoja prava (GDPR + ZZPL)</h2>
 <ol>
-    <li><strong>Pravo na pristup</strong> — kopija svih podataka koje imamo o tebi</li>
-    <li><strong>Pravo na ispravku</strong> — direktno u Aplikaciji (Profil → izmena)</li>
-    <li><strong>Pravo na brisanje</strong> ("pravo da se bude zaboravljen") — direktno u Aplikaciji (Profil → Obriši nalog)</li>
-    <li><strong>Pravo na prenosivost</strong> — kopija u mašinski čitljivom formatu (JSON/CSV)</li>
+    <li><strong>Pravo na pristup</strong> — možeš da vidiš sve svoje podatke kroz Aplikaciju (Profil, Račun, Moji stanovi). Dodatno, kopiju svih podataka šaljemo na zahtev.</li>
+    <li><strong>Pravo na ispravku</strong> — direktno u Aplikaciji (Profil) ili kontakt upravnika</li>
+    <li><strong>Pravo na brisanje</strong> ("pravo da se bude zaboravljen") — direktno u Aplikaciji (Profil → Obriši nalog), uz izuzetak zakonske obaveze za finansijske zapise</li>
+    <li><strong>Pravo na prenosivost</strong> — kopija u mašinski čitljivom formatu (JSON)</li>
     <li><strong>Pravo na prigovor</strong> — možeš se usprotiviti obradi</li>
-    <li><strong>Pravo na povlačenje saglasnosti</strong> — brisanjem naloga u bilo kom trenutku</li>
+    <li><strong>Pravo na povlačenje pristanka</strong> — brisanjem naloga ili kroz Settings → Notifications za push</li>
 </ol>
 <p>Za ostvarivanje bilo kog prava: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
 <p>Odgovorićemo u roku od <strong>30 dana</strong>.</p>
@@ -213,26 +263,28 @@ Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
 <p>Možeš trajno obrisati svoj nalog u Aplikaciji preko: <strong>Profil → Obriši nalog</strong>.</p>
 <p>Brisanjem naloga:</p>
 <ul>
-    <li>Trajno se brišu svi tvoji lični podaci (ime, email, telefon)</li>
+    <li>Trajno se brišu svi tvoji lični podaci (ime, email, telefon, profil)</li>
     <li>Brišu se sve tvoje prijave, komentari, glasovi</li>
     <li>Brišu se sve fotografije koje si poslao</li>
     <li>Brišu se sve veze sa stanovima u kojima si registrovan</li>
+    <li><strong>Finansijske transakcije se anonimizuju</strong> (umesto brisanja) zbog Zakona o računovodstvu — posle 10 godina i one se brišu</li>
 </ul>
-<p><strong>Brisanje je nepovratno.</strong> Posle brisanja, podaci se ne mogu vratiti čak ni na zahtev.</p>
+<p><strong>Brisanje ličnih podataka je nepovratno.</strong></p>
 
 <h2>9. Bezbednost podataka</h2>
 <p>Preduzimamo industrijski standardne mere zaštite:</p>
 <ul>
     <li>TLS 1.3 za sav saobraćaj</li>
     <li>bcrypt hashovanje lozinki</li>
-    <li>Row Level Security na nivou baze podataka</li>
+    <li>Row Level Security na nivou baze podataka (svaka zajednica ima izolovan pristup)</li>
     <li>JWT tokeni sa automatskim isticanjem</li>
     <li>iOS Keychain za čuvanje session tokena na uređaju</li>
     <li>Hardware-backed enkripcija podataka na iPhone uređaju</li>
+    <li>Autentifikovan pristup PDF dokumentima (Storage RLS)</li>
 </ul>
 
 <h2>10. Maloletnici</h2>
-<p>Aplikacija nije namenjena licima mlađim od 16 godina. Ne prikupljamo svesno podatke od maloletnika.</p>
+<p>Aplikacija nije namenjena licima mlađim od 16 godina. Stambena zajednica je pravna forma za odrasle vlasnike i stanare. Ako saznamo da imamo podatke deteta ispod 16, brišemo ih u roku od 7 dana.</p>
 
 <h2>11. Promene Politike privatnosti</h2>
 <p>O materijalnim izmenama bićeš obavešten:</p>
@@ -241,6 +293,7 @@ Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
     <li>Putem emaila na adresu koju imamo</li>
     <li>Putem objave na ovoj stranici</li>
 </ul>
+<p>Verzija i datum su uvek navedeni na vrhu. Stare verzije čuvamo u Git istoriji ovog repo-a.</p>
 
 <h2>12. Kontakt</h2>
 <p><strong>Email:</strong> <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
@@ -250,64 +303,91 @@ Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
     <li>Adresa: Bulevar kralja Aleksandra 15, 11000 Beograd</li>
 </ul>
 
+<p style="font-size: 14px; color: var(--text-secondary); margin-top: 24px;"><em>eZgrada je trenutno u privatnom razvoju. Operater platforme je fizičko lice Nikola Pavlović. Po pokretanju SaaS faze osnovaće se pravno lice i ova Politika će se ažurirati sa MB, PIB i sedištem firme.</em></p>
+
 <hr style="margin: 48px 0; border: none; border-top: 1px solid var(--border);">
 
 <h1 id="english">Privacy Policy — eZgrada (English)</h1>
-<p class="updated">Last updated: 16 May 2026</p>
+<p class="updated">Version 2.0 · Last updated: 18 May 2026</p>
 
 <h2>1. Who we are</h2>
-<p>The <strong>eZgrada</strong> application is a software platform for housing community management, allowing residents and building managers to communicate, report issues, vote on community matters, and access important contacts.</p>
-<p><strong>Service Provider (Data Controller):</strong><br>
+<p>The <strong>eZgrada</strong> application is a software platform for housing community management, allowing residents, council members and building managers to communicate, report issues, vote, track community finances, and access important contacts and documents.</p>
+<p><strong>Service Provider (Platform Controller):</strong><br>
 Nikola Pavlović<br>
 Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
 
+<div class="callout">
+<strong>Responsibility split:</strong> The app operator is the controller for platform-related data. <strong>Each housing community is an independent controller</strong> for its residents' data — eZgrada acts as a processor providing the technical infrastructure.
+</div>
+
 <h2>2. Data we collect</h2>
-<p><strong>Account data:</strong> Name, email, hashed password, optional phone, apartment and role (owner, resident, council member, manager).</p>
+<p><strong>Account data:</strong> Name, email, hashed password, optional phone, role (resident, council member, manager, super-admin), verification status.</p>
+<p><strong>Property data:</strong> Apartment number, floor, square meters, monthly fee, resident type (owner/tenant).</p>
 <p><strong>User-generated content:</strong> Issue reports (description, location, priority, category), optional photos, comments, anonymized votes, contractor recommendations.</p>
-<p><strong>Technical:</strong> IP on login (security), device type and OS version, login timestamps.</p>
-<p><strong>We do NOT collect:</strong> Precise location, your phone contacts, activity in other apps, payment data.</p>
+<p><strong>Financial data (new, V1.1):</strong> Your payments to the community, your charges (monthly fee, special contributions), balance and payment history. Bank statements (CSV) imported by the manager — original CSV files are NOT stored on the server; only parsed transactions are kept.</p>
+<p><strong>Documents:</strong> PDF documents uploaded by the manager (contracts, meeting minutes, financial reports), visible to all residents of the same community.</p>
+<p><strong>Neighbors:</strong> Other residents of your community can see your name, surname and role. Your phone number is shared with neighbors <strong>only if you are a council member or manager</strong> (publicly elected role).</p>
+<p><strong>Technical:</strong> IP on login (security), device type and OS version, login timestamps, push notification token (optional).</p>
+<p><strong>We do NOT collect:</strong> Precise location (GPS), your phone contacts, activity in other apps, ad identifier (IDFA), card payment data.</p>
 
-<h2>3. Purpose of processing</h2>
-<ol>
-    <li>Providing core functionality</li>
-    <li>User authentication</li>
-    <li>Verification by your building manager</li>
-    <li>Security (preventing unauthorized access)</li>
-</ol>
-<p><strong>Legal basis:</strong> Consent given at registration and contract performance (GDPR Art. 6(1)(b), Serbian Personal Data Protection Act).</p>
-
-<h2>4. Sharing</h2>
+<h2>3. Legal basis</h2>
 <ul>
-    <li><strong>Within your community:</strong> Name and contact info visible to approved members.</li>
+    <li>Account & community membership: contract performance</li>
+    <li>Financial data: legal obligation (Serbian Accounting Act) + contract performance</li>
+    <li>Council member phone in Neighbors: legitimate interest (elected public function)</li>
+    <li>Push token: consent (you can opt out)</li>
+</ul>
+<p>Legal framework: GDPR Art. 6 + Serbian Personal Data Protection Act.</p>
+
+<h2>4. Who can see what</h2>
+<ul>
+    <li><strong>Within your community:</strong> Name and apartment visible to approved members; council member phone visible to all residents; ordinary resident phone NOT shared; your individual financial transactions visible only to manager and council members (council member view-only).</li>
     <li><strong>Between communities:</strong> Data is NEVER shared (Row Level Security).</li>
-    <li><strong>Third parties:</strong> No sales/rentals. Only Supabase Inc. (hosting, EU-Frankfurt) and Apple Inc. as required.</li>
+    <li><strong>Third parties:</strong> No sales/rentals. Only Supabase Inc. (hosting, EU-Frankfurt), Apple Inc. (push notifications), or government authorities upon legal request.</li>
 </ul>
 
 <h2>5. Where we store data</h2>
 <ul>
-    <li>Servers: Supabase Inc., EU-Frankfurt (Germany)</li>
+    <li>Servers: Supabase Inc., EU-Frankfurt (Germany), GDPR-certified</li>
     <li>Transport: TLS 1.3</li>
     <li>Passwords: bcrypt hash</li>
     <li>Database: Row Level Security + JWT auth</li>
+    <li>Files: authenticated Storage access, isolated per community</li>
 </ul>
 
-<h2>6. Your rights (GDPR)</h2>
+<h2>6. Data retention</h2>
+<table>
+<tr><th>Type</th><th>Retention</th></tr>
+<tr><td>Active account</td><td>While account is active</td></tr>
+<tr><td>Deleted account (personal data)</td><td>Permanently deleted on request</td></tr>
+<tr><td><strong>Financial records</strong></td><td><strong>10 years</strong> (Serbian Accounting Act) — anonymized (not deleted) after account deletion</td></tr>
+<tr><td>Votes and assembly decisions</td><td>While community is active (statutory document)</td></tr>
+<tr><td>Login audit logs</td><td>90 days</td></tr>
+<tr><td>Push token</td><td>Until app uninstall or notifications disabled</td></tr>
+</table>
+
+<h2>7. Your rights (GDPR + ZZPL)</h2>
 <p>Access, rectification, erasure (in-app: Profile → Delete Account), portability, objection, withdrawal of consent.</p>
+<p>Note: financial records cannot be deleted but are anonymized due to legal accounting obligations (10-year retention).</p>
 <p>Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a> (response within 30 days)</p>
 
-<h2>7. Account deletion</h2>
-<p>You can permanently delete your account directly in the app: <strong>Profile → Delete Account</strong>.</p>
-<p>Deletion permanently removes all personal data, reports, comments, votes, photos, and apartment associations. <strong>Deletion is irreversible.</strong></p>
+<h2>8. Account deletion</h2>
+<p>Permanent in-app: <strong>Profile → Delete Account</strong>. Removes all personal data, reports, comments, votes, photos, apartment associations. Financial transactions are anonymized (not deleted) due to legal retention. <strong>Personal data deletion is irreversible.</strong></p>
 
-<h2>8. Security</h2>
-<p>Industry-standard measures: TLS 1.3, bcrypt, Row Level Security, JWT, iOS Keychain, hardware-backed encryption.</p>
+<h2>9. Security</h2>
+<p>Industry-standard: TLS 1.3, bcrypt, Row Level Security, JWT, iOS Keychain, hardware-backed encryption, authenticated Storage access.</p>
 
-<h2>9. Children</h2>
+<h2>10. Children</h2>
 <p>Not intended for users under 16. We do not knowingly collect minors' data.</p>
 
-<h2>10. Contact</h2>
+<h2>11. Changes</h2>
+<p>Material changes communicated via in-app notice, email, and updates on this page. Version and date always at the top.</p>
+
+<h2>12. Contact</h2>
 <p><strong>Email:</strong> <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
 <p><strong>Complaints:</strong> Serbian Commissioner for Information of Public Importance — <a href="https://www.poverenik.rs" target="_blank">www.poverenik.rs</a></p>
+
+<p style="font-size: 14px; color: var(--text-secondary); margin-top: 24px;"><em>eZgrada is currently in private development. The platform operator is an individual, Nikola Pavlović. Upon launching the SaaS phase, a legal entity will be incorporated and this Policy will be updated with company registration details.</em></p>
 
 <footer>
     © 2026 Nikola Pavlović · eZgrada · <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a>
