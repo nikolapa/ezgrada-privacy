@@ -311,83 +311,206 @@ Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
 <p class="updated">Version 2.0 · Last updated: 18 May 2026</p>
 
 <h2>1. Who we are</h2>
-<p>The <strong>eZgrada</strong> application is a software platform for housing community management, allowing residents, council members and building managers to communicate, report issues, vote, track community finances, and access important contacts and documents.</p>
+<p>The <strong>eZgrada</strong> application (hereinafter: "the App") is a software platform for housing community management, enabling residents, council members and building managers to communicate, report issues, vote, track community finances, and access important contacts and documents.</p>
+
 <p><strong>Service Provider (Platform Controller):</strong><br>
 Nikola Pavlović<br>
 Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
 
 <div class="callout">
-<strong>Responsibility split:</strong> The app operator is the controller for platform-related data. <strong>Each housing community is an independent controller</strong> for its residents' data — eZgrada acts as a processor providing the technical infrastructure.
+<strong>Responsibility split:</strong> The App operator is the controller for platform-related data. <strong>Each housing community is an independent controller</strong> for its residents' data — eZgrada acts as a processor providing the technical infrastructure.
 </div>
 
-<h2>2. Data we collect</h2>
-<p><strong>Account data:</strong> Name, email, hashed password, optional phone, role (resident, council member, manager, super-admin), verification status.</p>
-<p><strong>Property data:</strong> Apartment number, floor, square meters, monthly fee, resident type (owner/tenant).</p>
-<p><strong>User-generated content:</strong> Issue reports (description, location, priority, category), optional photos, comments, anonymized votes, contractor recommendations.</p>
-<p><strong>Financial data (new, V1.1):</strong> Your payments to the community, your charges (monthly fee, special contributions), balance and payment history. Bank statements (CSV) imported by the manager — original CSV files are NOT stored on the server; only parsed transactions are kept.</p>
-<p><strong>Documents:</strong> PDF documents uploaded by the manager (contracts, meeting minutes, financial reports), visible to all residents of the same community.</p>
-<p><strong>Neighbors:</strong> Other residents of your community can see your name, surname and role. Your phone number is shared with neighbors <strong>only if you are a council member or manager</strong> (publicly elected role).</p>
-<p><strong>Technical:</strong> IP on login (security), device type and OS version, login timestamps, push notification token (optional).</p>
-<p><strong>We do NOT collect:</strong> Precise location (GPS), your phone contacts, activity in other apps, ad identifier (IDFA), card payment data.</p>
+<h2>2. What data we collect</h2>
 
-<h2>3. Legal basis</h2>
+<h3>2.1. User data</h3>
+<p>At registration:</p>
 <ul>
-    <li>Account & community membership: contract performance</li>
-    <li>Financial data: legal obligation (Serbian Accounting Act) + contract performance</li>
-    <li>Council member phone in Neighbors: legitimate interest (elected public function)</li>
-    <li>Push token: consent (you can opt out)</li>
-</ul>
-<p>Legal framework: GDPR Art. 6 + Serbian Personal Data Protection Act.</p>
-
-<h2>4. Who can see what</h2>
-<ul>
-    <li><strong>Within your community:</strong> Name and apartment visible to approved members; council member phone visible to all residents; ordinary resident phone NOT shared; your individual financial transactions visible only to manager and council members (council member view-only).</li>
-    <li><strong>Between communities:</strong> Data is NEVER shared (Row Level Security).</li>
-    <li><strong>Third parties:</strong> No sales/rentals. Only Supabase Inc. (hosting, EU-Frankfurt), Apple Inc. (push notifications), or government authorities upon legal request.</li>
+    <li>First and last name</li>
+    <li>Email address</li>
+    <li>Password (stored exclusively in cryptographically hashed form, never in plain text)</li>
+    <li>Phone (optional)</li>
+    <li>Role within the community (resident, council member, manager, super-admin)</li>
+    <li>Verification status (pending, approved, rejected)</li>
 </ul>
 
-<h2>5. Where we store data</h2>
+<h3>2.2. Property and apartment data</h3>
 <ul>
-    <li>Servers: Supabase Inc., EU-Frankfurt (Germany), GDPR-certified</li>
-    <li>Transport: TLS 1.3</li>
-    <li>Passwords: bcrypt hash</li>
-    <li>Database: Row Level Security + JWT auth</li>
-    <li>Files: authenticated Storage access, isolated per community</li>
+    <li>Apartment number, floor, square meters</li>
+    <li>Monthly maintenance fee (if set)</li>
+    <li>Resident type (owner, tenant)</li>
 </ul>
 
-<h2>6. Data retention</h2>
+<h3>2.3. User-generated content</h3>
+<ul>
+    <li>Issue reports (description, location, priority, category)</li>
+    <li>Photos attached to reports (optional)</li>
+    <li>Comments on reports</li>
+    <li>Votes in polls (anonymized in results)</li>
+    <li>Contractor recommendations you submit</li>
+</ul>
+
+<h3>2.4. Financial data (new, V1.1)</h3>
+<ul>
+    <li><strong>Your payments</strong> to the community (amount, date, reference number, description)</li>
+    <li><strong>Your charges</strong> (monthly fee, special contributions)</li>
+    <li><strong>Balance and payment history</strong> linked to your apartment</li>
+    <li><strong>Bank statements (CSV)</strong> — the manager imports a CSV statement from the bank; only payments belonging to your community are extracted. <strong>Original CSV files are NOT stored on the server</strong>; only parsed and individual transactions are created</li>
+</ul>
+
+<div class="callout">
+<strong>Who can see your finances:</strong> The manager and council members see all community transactions (council members view-only, cannot modify). Other residents <strong>CANNOT see</strong> your individual payments — they only see the community's total balance and their own personal transactions.
+</div>
+
+<h3>2.5. Community documents</h3>
+<ul>
+    <li>PDF documents uploaded by the manager (contracts, meeting minutes, financial reports, rulebooks)</li>
+    <li>Visible to all residents of the same community</li>
+</ul>
+
+<h3>2.6. Neighbors and contacts</h3>
+<ul>
+    <li>In the "Neighbors" section, residents of the same community can see other residents' name, surname and role</li>
+    <li><strong>Phone is NOT shared</strong> if you are an ordinary resident</li>
+    <li><strong>Phone IS shared with community residents</strong> only if you are a council member or manager (publicly elected role)</li>
+</ul>
+
+<h3>2.7. Technical data</h3>
+<ul>
+    <li>IP address at login (for security verification)</li>
+    <li>Device type and operating system version</li>
+    <li>Login and logout timestamps</li>
+    <li>Push notification token (linked to your device, optional)</li>
+</ul>
+
+<h3>2.8. What we do NOT collect</h3>
+<ul>
+    <li>Your precise geographic location (GPS)</li>
+    <li>Contacts from your phone</li>
+    <li>Activity in other applications</li>
+    <li>Advertising identifier (IDFA)</li>
+    <li>Card payment data (the App does not process card payments)</li>
+</ul>
+
+<h2>3. Why we collect data (legal basis)</h2>
 <table>
-<tr><th>Type</th><th>Retention</th></tr>
-<tr><td>Active account</td><td>While account is active</td></tr>
-<tr><td>Deleted account (personal data)</td><td>Permanently deleted on request</td></tr>
-<tr><td><strong>Financial records</strong></td><td><strong>10 years</strong> (Serbian Accounting Act) — anonymized (not deleted) after account deletion</td></tr>
-<tr><td>Votes and assembly decisions</td><td>While community is active (statutory document)</td></tr>
-<tr><td>Login audit logs</td><td>90 days</td></tr>
-<tr><td>Push token</td><td>Until app uninstall or notifications disabled</td></tr>
+<tr><th>Category</th><th>Legal basis</th></tr>
+<tr><td>Email, password, name, surname</td><td>Contract performance (registration)</td></tr>
+<tr><td>Community membership, role</td><td>Contract performance (community access)</td></tr>
+<tr><td>Apartment ownership</td><td>Contract performance + community's legitimate interest</td></tr>
+<tr><td>Financial data (payments, charges)</td><td>Legal obligation (Serbian Accounting Act) + contract performance</td></tr>
+<tr><td>Bank statements</td><td>Community's legitimate interest (bookkeeping)</td></tr>
+<tr><td>Votes</td><td>Contract performance (community's statutory obligation)</td></tr>
+<tr><td>Phone in Neighbors (council members only)</td><td>Legitimate interest (elected public role)</td></tr>
+<tr><td>Push token</td><td>Consent (you can refuse notifications)</td></tr>
 </table>
 
-<h2>7. Your rights (GDPR + ZZPL)</h2>
-<p>Access, rectification, erasure (in-app: Profile → Delete Account), portability, objection, withdrawal of consent.</p>
-<p>Note: financial records cannot be deleted but are anonymized due to legal accounting obligations (10-year retention).</p>
-<p>Email: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a> (response within 30 days)</p>
+<p>Legal framework: <strong>Personal Data Protection Act of the Republic of Serbia</strong> ("Official Gazette of RS", No. 87/2018) and <strong>EU General Data Protection Regulation (GDPR)</strong> Art. 6.</p>
+
+<h2>4. Whom we share data with</h2>
+
+<h3>4.1. Within your community</h3>
+<ul>
+    <li>Your <strong>name, surname and apartment number</strong> are visible to other approved members of your community</li>
+    <li>Your <strong>phone</strong> is shared with other residents only if you are a council member or manager</li>
+    <li>Your <strong>reports and comments</strong> are visible to all members of your community</li>
+    <li>Your <strong>votes are anonymized</strong> — other members see total counts per option, not who voted for what. The manager sees individual votes only for tallying purposes</li>
+    <li>Your <strong>individual financial transactions</strong> are visible only to the manager and council members — not to other residents</li>
+</ul>
+
+<h3>4.2. With other communities</h3>
+<p><strong>Your data is NEVER shared with other housing communities.</strong> The App uses database-level data isolation technology (Row Level Security) that guarantees data of one community cannot be physically accessed by users of another community.</p>
+
+<h3>4.3. With third parties</h3>
+<p>We <strong>do not sell</strong>, rent, or forward data to third parties for marketing purposes. We do not use external analytics tools (Google Analytics, Facebook Pixel, etc.). Data is forwarded only to:</p>
+<ul>
+    <li><strong>Supabase Inc.</strong> (our hosting and processing service) — data is stored in Frankfurt (EU). Supabase is GDPR-certified.</li>
+    <li><strong>Apple Inc.</strong> — push notification token (when we enable notifications) passes through the Apple Push Notification Service</li>
+    <li><strong>Competent state authorities</strong> — only based on legal obligation (court order or request from competent authority)</li>
+</ul>
+
+<h2>5. Where and how we store data</h2>
+<ul>
+    <li>Servers: <strong>Supabase Inc., EU-Frankfurt (Germany)</strong></li>
+    <li>Transport: <strong>TLS 1.3 encryption</strong></li>
+    <li>Passwords: <strong>bcrypt hash</strong> (cannot be decrypted)</li>
+    <li>Database access: <strong>Row Level Security policies</strong> + JWT authentication</li>
+    <li>PDF documents and files: isolated storage bucket per community, authenticated access</li>
+    <li>Backup: Supabase point-in-time recovery (7 days)</li>
+</ul>
+
+<h2>6. How long we retain data</h2>
+<table>
+<tr><th>Data type</th><th>Retention period</th></tr>
+<tr><td>Active account and basic data</td><td>While the account is active</td></tr>
+<tr><td>Deleted account (personal data)</td><td>Permanently deleted at the moment of request</td></tr>
+<tr><td><strong>Financial records</strong> (payments, charges, expenses)</td><td><strong>10 years</strong> (Serbian Accounting Act) — anonymized after account deletion, not deleted</td></tr>
+<tr><td>Votes and assembly decisions</td><td>While the community is active (statutory document)</td></tr>
+<tr><td>Login audit logs</td><td>90 days from the event</td></tr>
+<tr><td>Push token</td><td>Until you uninstall the App or disable notifications</td></tr>
+</table>
+
+<div class="callout">
+<strong>Important:</strong> Deleting your account erases everything personal (name, email, phone, profile), but <strong>financial transactions are anonymized</strong> (link with your ID is removed) instead of being deleted, because the Serbian Accounting Act requires retaining business records for 10 years. After that period, those records are also deleted.
+</div>
+
+<h2>7. Your rights (GDPR + Serbian PDPA)</h2>
+<ol>
+    <li><strong>Right of access</strong> — you can see all your data through the App (Profile, Account, My apartments). Additionally, we send a copy of all data on request.</li>
+    <li><strong>Right to rectification</strong> — directly in the App (Profile) or via manager contact</li>
+    <li><strong>Right to erasure</strong> ("right to be forgotten") — directly in the App (Profile → Delete Account), with the exception of the legal obligation for financial records</li>
+    <li><strong>Right to portability</strong> — copy in machine-readable format (JSON)</li>
+    <li><strong>Right to object</strong> — you can object to processing</li>
+    <li><strong>Right to withdraw consent</strong> — by deleting your account or through Settings → Notifications for push</li>
+</ol>
+<p>To exercise any right: <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
+<p>We will respond within <strong>30 days</strong>.</p>
 
 <h2>8. Account deletion</h2>
-<p>Permanent in-app: <strong>Profile → Delete Account</strong>. Removes all personal data, reports, comments, votes, photos, apartment associations. Financial transactions are anonymized (not deleted) due to legal retention. <strong>Personal data deletion is irreversible.</strong></p>
+<p>You can permanently delete your account in the App via: <strong>Profile → Delete Account</strong>.</p>
+<p>Account deletion:</p>
+<ul>
+    <li>Permanently erases all your personal data (name, email, phone, profile)</li>
+    <li>Erases all your reports, comments, votes</li>
+    <li>Erases all photos you submitted</li>
+    <li>Erases all associations with apartments you are registered in</li>
+    <li><strong>Financial transactions are anonymized</strong> (instead of deleted) due to the Accounting Act — after 10 years they are also deleted</li>
+</ul>
+<p><strong>Personal data deletion is irreversible.</strong></p>
 
-<h2>9. Security</h2>
-<p>Industry-standard: TLS 1.3, bcrypt, Row Level Security, JWT, iOS Keychain, hardware-backed encryption, authenticated Storage access.</p>
+<h2>9. Data security</h2>
+<p>We take industry-standard protection measures:</p>
+<ul>
+    <li>TLS 1.3 for all traffic</li>
+    <li>bcrypt password hashing</li>
+    <li>Row Level Security at the database level (each community has isolated access)</li>
+    <li>JWT tokens with automatic expiration</li>
+    <li>iOS Keychain for storing session tokens on the device</li>
+    <li>Hardware-backed data encryption on the iPhone device</li>
+    <li>Authenticated access to PDF documents (Storage RLS)</li>
+</ul>
 
-<h2>10. Children</h2>
-<p>Not intended for users under 16. We do not knowingly collect minors' data.</p>
+<h2>10. Minors</h2>
+<p>The App is not intended for persons under 16 years of age. A housing community is a legal form for adult owners and residents. If we learn that we have data of a child under 16, we delete it within 7 days.</p>
 
-<h2>11. Changes</h2>
-<p>Material changes communicated via in-app notice, email, and updates on this page. Version and date always at the top.</p>
+<h2>11. Changes to the Privacy Policy</h2>
+<p>You will be notified of material changes:</p>
+<ul>
+    <li>Via in-App notification</li>
+    <li>Via email to the address we have</li>
+    <li>Via publication on this page</li>
+</ul>
+<p>Version and date are always indicated at the top. Older versions are kept in the Git history of this repo.</p>
 
 <h2>12. Contact</h2>
 <p><strong>Email:</strong> <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a></p>
-<p><strong>Complaints:</strong> Serbian Commissioner for Information of Public Importance — <a href="https://www.poverenik.rs" target="_blank">www.poverenik.rs</a></p>
+<p><strong>Legal recourse:</strong> You have the right to lodge a complaint with the <strong>Commissioner for Information of Public Importance and Personal Data Protection of the Republic of Serbia</strong>:</p>
+<ul>
+    <li>Web: <a href="https://www.poverenik.rs" target="_blank">www.poverenik.rs</a></li>
+    <li>Address: Bulevar kralja Aleksandra 15, 11000 Beograd, Serbia</li>
+</ul>
 
-<p style="font-size: 14px; color: var(--text-secondary); margin-top: 24px;"><em>eZgrada is currently in private development. The platform operator is an individual, Nikola Pavlović. Upon launching the SaaS phase, a legal entity will be incorporated and this Policy will be updated with company registration details.</em></p>
+<p style="font-size: 14px; color: var(--text-secondary); margin-top: 24px;"><em>eZgrada is currently in private development. The platform operator is an individual, Nikola Pavlović. Upon launching the SaaS phase, a legal entity will be incorporated and this Policy will be updated with company registration details (registration number, tax ID, and registered office).</em></p>
 
 <footer>
     © 2026 Nikola Pavlović · eZgrada · <a href="mailto:n.pavlovic785@gmail.com">n.pavlovic785@gmail.com</a>
