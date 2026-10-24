@@ -27,7 +27,7 @@
 </head>
 <body>
   <h1>Politika privatnosti aplikacije &#8222;eZgrada"</h1>
-  <p class="meta">Poslednje a&#382;urirano: 2. septembar 2026.</p>
+  <p class="meta">Poslednje a&#382;urirano: 21. oktobar 2026.</p>
 
   <h2>1. Uvod</h2>
   <p>Nikola Pavlovi&#263; (&#8222;mi", &#8222;nas"), kao fizi&#269;ko lice koje pru&#382;a aplikaciju &#8222;eZgrada"
@@ -86,19 +86,19 @@
   </ul>
   <h3>2.6 Tehni&#269;ki podaci</h3>
   <ul>
-    <li>Ure&#273;aj i OS verzija &#8212; iPhone model, iOS verzija (za dijagnostiku)</li>
+    <li>Ure&#273;aj i OS verzija &#8212; model telefona, verzija iOS-a ili Android-a (za dijagnostiku)</li>
     <li>App verzija &#8212; za pra&#263;enje bug-ova</li>
     <li>IP adresa &#8212; samo tokom login sesije, za bezbednosnu proveru</li>
-    <li>APNs ure&#273;ajni token &#8212; za slanje push notifikacija</li>
+    <li>Ure&#273;ajni token za push notifikacije &#8212; APNs (iPhone) ili Firebase Cloud Messaging (Android)</li>
     <li>Crash logovi i tehni&#269;ka dijagnostika (Sentry &#8212; vidi 4.3)</li>
   </ul>
   <h3>2.7 Lokalno &#269;uvanje na va&#353;em ure&#273;aju</h3>
-  <p>Aplikacija na va&#353;em iPhone-u &#269;uva:</p>
+  <p>Aplikacija na va&#353;em telefonu &#269;uva:</p>
   <ul>
-    <li>Session token (u iOS Keychain) &#8212; dr&#382;i vas ulogovanim izme&#273;u otvaranja Aplikacije</li>
+    <li>Session token (na iPhone-u u iOS Keychain-u, na Android-u u privatnom skladi&#353;tu Aplikacije) &#8212; dr&#382;i vas ulogovanim izme&#273;u otvaranja Aplikacije</li>
     <li>Tutorial state (UserDefaults / AppStorage) &#8212; pamti da ste pro&#353;li welcome flow</li>
     <li>Push preferences (UserDefaults + Supabase profil) &#8212; koje grupe notifikacija &#382;elite da primate</li>
-    <li>Slike u cache-u (iOS standardni cache, bri&#353;u se automatski)</li>
+    <li>Slike u cache-u (standardni cache operativnog sistema, bri&#353;u se automatski)</li>
   </ul>
   <p>Ovi podaci se bri&#353;u kad obri&#353;ete Aplikaciju sa telefona ili kliknete &#8222;Odjava".</p>
   <h3>2.8 &#352;ta NE prikupljamo</h3>
@@ -175,6 +175,11 @@
     + APNs ure&#273;ajni token za push isporuku. Push payload sadr&#382;i samo naslov i tekst
     notifikacije (ne i sadr&#382;aj va&#353;eg naloga), prenosi se preko TLS-a.
     <a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a></li>
+    <li><strong>Google LLC</strong> &#8212; Google Play i Firebase Cloud Messaging (FCM), za
+    korisnike Android verzije Aplikacije. &#352;ta dobija: minimalni podaci potrebni za instalaciju
+    i rad Aplikacije + FCM ure&#273;ajni token za push isporuku. Push payload sadr&#382;i samo naslov i
+    tekst notifikacije (ne i sadr&#382;aj va&#353;eg naloga), prenosi se preko TLS-a.
+    <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
     <li><strong>Sentry GmbH</strong> &#8212; crash reporting i tehni&#269;ka dijagnostika. Lokacija: EU
     (Frankfurt). &#352;ta dobija: anonimne crash logove, tehni&#269;ke detalje o gre&#353;ci (tip ure&#273;aja, OS
     verzija, sled poziva). NE dobija: va&#353; email, ime, sadr&#382;aj va&#353;ih prijava ili glasova.
@@ -262,14 +267,15 @@
 
   <h2>8. Brisanje naloga</h2>
   <p>Korisnik mo&#382;e trajno obrisati svoj korisni&#269;ki nalog u Aplikaciji preko opcije: Profil &#8594;
-  Obri&#353;i nalog. Brisanjem naloga prestaje pravo Korisnika na pristup Aplikaciji i bri&#353;u se
+  Obri&#353;i nalog. Ako nemate pristup Aplikaciji, brisanje naloga mo&#382;ete zatra&#382;iti i
+  putem stranice <a href="https://nikolapa.github.io/ezgrada-brisanje-naloga/">Brisanje naloga</a> ili emailom na info@ezgrada.app. Brisanjem naloga prestaje pravo Korisnika na pristup Aplikaciji i bri&#353;u se
   li&#269;ni podaci vezani isklju&#269;ivo za njegov nalog koji vi&#353;e nisu potrebni za pru&#382;anje Usluge.</p>
   <p>Brisanje naloga ne podrazumeva automatsko brisanje podataka koji predstavljaju deo
   evidencije Stambene zajednice (uplate, zadu&#382;enja, glasanja, dokumenti, prijave problema i
   druge aktivnosti). Takvi podaci ostaju u okviru Stambene zajednice i &#269;uvaju se u skladu sa
   rokovima definisanim ovom Politikom, Ugovorom o kori&#353;&#263;enju aplikacije i DPA.</p>
   <p>Kada identitet Korisnika vi&#353;e nije potreban za svrhu za koju se odre&#273;eni podatak &#269;uva,
-  podaci se bri&#353;u, anonimizuju ili pseudonimizuju. Brisanjem naloga uklanja se APNs ure&#273;ajni
+  podaci se bri&#353;u, anonimizuju ili pseudonimizuju. Brisanjem naloga uklanja se ure&#273;ajni
   token povezan sa nalogom i Korisnik vi&#353;e ne prima notifikacije. Brisanje ne uti&#269;e na pravo
   Korisnika da ostvaruje prava iz &#269;lana 7. Brisanje je nepovratno posle 7 dana (backup
   retention period).</p>
@@ -282,9 +288,9 @@
     <li>bcrypt hashovanje lozinki</li>
     <li>Row Level Security (RLS) na nivou baze &#8212; izolacija izme&#273;u zajednica</li>
     <li>JWT tokeni sa automatskim isticanjem</li>
-    <li>iOS Keychain za &#269;uvanje session tokena na ure&#273;aju</li>
-    <li>Hardware-backed enkripcija podataka na iPhone ure&#273;aju</li>
-    <li>Push notifikacije sa enkriptovanim payload-om (TLS + APNs)</li>
+    <li>iOS Keychain (iPhone), odnosno privatno skladi&#353;te Aplikacije (Android) za &#269;uvanje session tokena na ure&#273;aju</li>
+    <li>Enkripcija podataka na ure&#273;aju koju obezbe&#273;uje operativni sistem (iOS / Android)</li>
+    <li>Push notifikacije sa enkriptovanim payload-om (TLS + APNs / FCM)</li>
     <li>Crash reporting sa isklju&#269;enim screenshot-ima i PII scrubbing-om (Sentry)</li>
     <li>Multi-factor authentication (MFA) za admin panele</li>
     <li>Redovna primena sigurnosnih zakrpa</li>
